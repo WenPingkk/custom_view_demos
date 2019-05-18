@@ -16,6 +16,7 @@ import com.sean.customview.R;
  * CreateTime 2019/5/18.
  * Description:
  */
+@SuppressWarnings("SpellCheckingInspection")
 public class ShapeView extends View{
 
     /**
@@ -59,13 +60,12 @@ public class ShapeView extends View{
                 drawCircle(canvas);
                 break;
             case Square:
-                drawSqure(canvas);
+                drawSquare(canvas);
                 break;
             case Triangle:
                 drawTriangle(canvas);
                 break;
         }
-
     }
 
     private void drawTriangle(Canvas canvas) {
@@ -80,7 +80,7 @@ public class ShapeView extends View{
         canvas.drawPath(mPath,mPaint);
     }
 
-    private void drawSqure(Canvas canvas) {
+    private void drawSquare(Canvas canvas) {
         mPaint.setColor(ContextCompat.getColor(getContext(),R.color.rect));
         canvas.drawRect(0,0,getWidth(),getHeight(),mPaint);
     }
