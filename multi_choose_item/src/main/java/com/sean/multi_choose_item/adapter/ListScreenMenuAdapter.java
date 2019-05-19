@@ -22,7 +22,7 @@ public class ListScreenMenuAdapter extends BaseMenuAdapter {
         this.mContext = context;
     }
 
-    private String[] mItems = new String[]{"类型","品牌","价格","更多"};
+    private String[] mItems = new String[]{"类型", "品牌", "价格", "更多"};
 
     @Override
     public int getCount() {
@@ -39,9 +39,7 @@ public class ListScreenMenuAdapter extends BaseMenuAdapter {
 
     @Override
     public View getMenuView(int position, ViewGroup parent) {
-        /**
-         * 根据需求显示对应的view
-         */
+        //这里根据具体view类型 自定义
         TextView menuView = (TextView) LayoutInflater.from(mContext).inflate(R.layout.ui_list_data_screen_menu, parent, false);
         menuView.setText(mItems[position]);
         return menuView;
