@@ -25,7 +25,7 @@ public class ListDataScreenView extends LinearLayout {
     // 1.1 创建头部用来存放 Tab
     private LinearLayout mMenuTabView;
     // 1.2 创建 FrameLayout 用来存放 = 阴影（View） + 菜单内容布局(FrameLayout)
-    private FrameLayout mMenuMiddleView;
+    private LinearLayout mMenuMiddleView;
     // 阴影
     private View mShadowView;
     // 创建菜单用来存放菜单内容
@@ -74,13 +74,20 @@ public class ListDataScreenView extends LinearLayout {
         /**
          * 创建 存放 菜单内容和阴影的视图
          */
-        mMenuMiddleView = new FrameLayout(context);
+        mMenuMiddleView = new LinearLayout(context);
+        mMenuMiddleView.setOrientation(VERTICAL);
         LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0);
         params.weight = 1;
         mMenuMiddleView.setLayoutParams(params);
         addView(mMenuMiddleView);
 
-
+        /**
+         * 把菜单内容放到父视图中
+         * 这里没有确认高度,高度在onMeasure方法中实现
+         */
+        mMenuContainerView = new FrameLayout(context);
+        mMenuContainerView.setBackgroundColor(Color.WHITE);
+        mMenuMiddleView.addView(mMenuContainerView);
         /**
          * 阴影是不限制大小,默认是MATCH_PARENT,MATCH_PARENT
          */
@@ -98,13 +105,6 @@ public class ListDataScreenView extends LinearLayout {
                 closeMenu();
             }
         });
-        /**
-         * 把菜单内容放到父视图中
-         * 这里没有确认高度,高度在onMeasure方法中实现
-         */
-        mMenuContainerView = new FrameLayout(context);
-        mMenuContainerView.setBackgroundColor(Color.WHITE);
-        mMenuMiddleView.addView(mMenuContainerView);
     }
 
     /**
