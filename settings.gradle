@@ -1,1 +1,1 @@
-include ':app', ':multi_choose_item'
+include ':app', ':multi_choose_item', ':loadingviewdemo'
