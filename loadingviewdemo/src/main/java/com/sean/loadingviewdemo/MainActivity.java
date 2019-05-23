@@ -11,6 +11,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         View loadingView = findViewById(R.id.load_view);
-        loadingView.setVisibility(View.VISIBLE);
+        //避免内存泄漏的方式是
+        if (loadingView != null) {
+            loadingView.clearAnimation();
+            loadingView.setVisibility(View.GONE);
+        }
+
     }
 }
