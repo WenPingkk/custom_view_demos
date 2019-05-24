@@ -20,25 +20,25 @@ import com.sean.loadingviewdemo.views.CircleView;
  * Description:
  */
 public class LoadingView extends RelativeLayout {
+    private int mTranslationDistance = 30;
+    private CircleView mLeftView, mMiddleView, mRightView;
+    private long ANIMATION_TIME = 500;
+
     public LoadingView(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public LoadingView(Context context, AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public LoadingView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initLayouy(context);
+        initLayout(context);
     }
 
-    private int mTranslationDistance = 30;
-    private CircleView mLeftView,mMiddleView,mRightView;
-    private long ANIMATION_TIME = 500;
-    private void initLayouy(Context context) {
+    private void initLayout(Context context) {
         mTranslationDistance = dip2px(mTranslationDistance);
-
         //设置背景 白色
         setBackgroundColor(Color.WHITE);
         mLeftView = getCircleView(context);
@@ -53,6 +53,9 @@ public class LoadingView extends RelativeLayout {
         addView(mRightView);
         addView(mMiddleView);
 
+        /**
+         * 在onResume方法中执行
+         */
         post(new Runnable() {
             @Override
             public void run() {
@@ -74,6 +77,7 @@ public class LoadingView extends RelativeLayout {
         set.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
+                //在动画结束时 开始往回运动
 //                super.onAnimationEnd(animation);
                 innerAnimation();
             }
@@ -82,10 +86,10 @@ public class LoadingView extends RelativeLayout {
     }
 
     private void innerAnimation() {
-        //左边->右边
-        ObjectAnimator leftTranslationAnimator = ObjectAnimator.ofFloat(mLeftView, "translationX", -mTranslationDistance,0);
+        //左边->右边 距离为向左运动的距离
+        ObjectAnimator leftTranslationAnimator = ObjectAnimator.ofFloat(mLeftView, "translationX", -mTranslationDistance, 0);
         //右边->左边
-        ObjectAnimator rightTranslationAnimator = ObjectAnimator.ofFloat(mRightView, "translationX", mTranslationDistance,0);
+        ObjectAnimator rightTranslationAnimator = ObjectAnimator.ofFloat(mRightView, "translationX", mTranslationDistance, 0);
         AnimatorSet set = new AnimatorSet();
         set.setInterpolator(new AccelerateInterpolator());
         set.setDuration(ANIMATION_TIME);
@@ -100,6 +104,7 @@ public class LoadingView extends RelativeLayout {
                 mMiddleView.exchangeColor(leftColor);
                 mLeftView.exchangeColor(rightColor);
                 mRightView.exchangeColor(mMiddleColor);
+                //运动结束,三者更换颜色
                 expendAnimation();
             }
         });
@@ -116,6 +121,7 @@ public class LoadingView extends RelativeLayout {
 
     /**
      * dp转为px
+     *
      * @param dip
      * @return
      */
