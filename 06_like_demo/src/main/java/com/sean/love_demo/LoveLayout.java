@@ -67,6 +67,10 @@ public class LoveLayout extends RelativeLayout {
         initLayout(context);
     }
 
+    /**
+     * 初始化 配置
+     * @param context
+     */
     private void initLayout(Context context) {
         /**
          * 1.随机数;

@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btn_love(View view) {
-        mLoveLayout.addLove();
+        for (int i = 0; i < 10; i++) {
+            mLoveLayout.addLove();
+        }
     }
 }
