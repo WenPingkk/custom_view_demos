@@ -89,15 +89,15 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/line">
 
-            <ListView
-                android:id="@+id/lv_hour"
+            <com.contrarywind.view.WheelView
+                android:id="@+id/wheel_view_hour"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
                 android:layout_weight="1"
                 />
 
-            <ListView
-                android:id="@+id/lv_min"
+            <com.contrarywind.view.WheelView
+                android:id="@+id/wheel_view_min"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
                 android:layout_weight="1"

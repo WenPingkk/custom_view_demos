@@ -16,6 +16,8 @@
             <option value="$PROJECT_DIR$/bezier_demo" />
             <option value="$PROJECT_DIR$/loadingviewdemo" />
             <option value="$PROJECT_DIR$/multi_choose_item" />
+            <option value="$PROJECT_DIR$/pickerview" />
+            <option value="$PROJECT_DIR$/wheelview" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
