@@ -17,9 +17,9 @@ import android.view.View;
  * CreateTime 2019/5/27.
  * Description:
  */
-public class MessageBubbleView extends View{
+public class MessageBubbleView extends View {
 
-    private PointF mFixedLocationPoint,mDragPoint;
+    private PointF mFixedLocationPoint, mDragPoint;
 
     private int mDragRadius = 12;
 
@@ -30,11 +30,11 @@ public class MessageBubbleView extends View{
     private int mFixedLocationRadius;
 
     public MessageBubbleView(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public MessageBubbleView(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public MessageBubbleView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -63,7 +63,7 @@ public class MessageBubbleView extends View{
             //小到一定程度就不画
             canvas.drawCircle(mFixedLocationPoint.x, mFixedLocationPoint.y, mFixedLocationRadius, mPaint);
             //画出贝塞尔曲线
-            canvas.drawPath(bezierPath,mPaint);
+            canvas.drawPath(bezierPath, mPaint);
         }
     }
 
@@ -76,7 +76,7 @@ public class MessageBubbleView extends View{
                 float downX = event.getX();
                 float downY = event.getY();
                 initPoint(downX, downY);
-            break;
+                break;
             case MotionEvent.ACTION_MOVE:
                 float moveX = event.getX();
                 float moveY = event.getY();
@@ -94,6 +94,7 @@ public class MessageBubbleView extends View{
 
     /**
      * 更新拖拽圆的位置
+     *
      * @param x
      * @param y
      */
@@ -104,6 +105,7 @@ public class MessageBubbleView extends View{
 
     /**
      * 初始化定点
+     *
      * @param x
      * @param y
      */
@@ -114,12 +116,13 @@ public class MessageBubbleView extends View{
 
     /**
      * 绘制贝塞尔曲线路径
+     *
      * @return
      */
     private Path getBezierPath() {
         double distance = getDistance(mDragPoint, mFixedLocationPoint);
 
-        mFixedLocationRadius = (int) (mFixedLocationRadiusMax - distance/ 14);
+        mFixedLocationRadius = (int) (mFixedLocationRadiusMax - distance / 14);
         if (mFixedLocationRadius < mFixedLocationRadiusMin) {
             //超过一定距离,贝塞尔曲线和固定圆 不绘制
             return null;
@@ -127,27 +130,27 @@ public class MessageBubbleView extends View{
 
         Path bezierPath = new Path();
         //求斜率
-        float dy = (mDragPoint.y-mFixedLocationPoint.y);
-        float dx = (mDragPoint.x-mFixedLocationPoint.x);
+        float dy = (mDragPoint.y - mFixedLocationPoint.y);
+        float dx = (mDragPoint.x - mFixedLocationPoint.x);
         float tanA = dy / dx;
         //求角度
         double arcTanA = Math.atan(tanA);
         //下面是绘制 四个点,这四个点是在曲线上的.和两个定圆相切
         // p0
-        float p0x = (float) (mFixedLocationPoint.x + mFixedLocationRadius*Math.sin(arcTanA));
-        float p0y = (float) (mFixedLocationPoint.y - mFixedLocationRadius*Math.cos(arcTanA));
+        float p0x = (float) (mFixedLocationPoint.x + mFixedLocationRadius * Math.sin(arcTanA));
+        float p0y = (float) (mFixedLocationPoint.y - mFixedLocationRadius * Math.cos(arcTanA));
 
         // p1
-        float p1x = (float) (mDragPoint.x + mDragRadius*Math.sin(arcTanA));
-        float p1y = (float) (mDragPoint.y - mDragRadius*Math.cos(arcTanA));
+        float p1x = (float) (mDragPoint.x + mDragRadius * Math.sin(arcTanA));
+        float p1y = (float) (mDragPoint.y - mDragRadius * Math.cos(arcTanA));
 
         // p2
-        float p2x = (float) (mDragPoint.x - mDragRadius*Math.sin(arcTanA));
-        float p2y = (float) (mDragPoint.y + mDragRadius*Math.cos(arcTanA));
+        float p2x = (float) (mDragPoint.x - mDragRadius * Math.sin(arcTanA));
+        float p2y = (float) (mDragPoint.y + mDragRadius * Math.cos(arcTanA));
 
         // p3
-        float p3x = (float) (mFixedLocationPoint.x - mFixedLocationRadius*Math.sin(arcTanA));
-        float p3y = (float) (mFixedLocationPoint.y + mFixedLocationRadius*Math.cos(arcTanA));
+        float p3x = (float) (mFixedLocationPoint.x - mFixedLocationRadius * Math.sin(arcTanA));
+        float p3y = (float) (mFixedLocationPoint.y + mFixedLocationRadius * Math.cos(arcTanA));
 
         //拼装贝塞尔曲线路径
         bezierPath.moveTo(p0x, p0y);

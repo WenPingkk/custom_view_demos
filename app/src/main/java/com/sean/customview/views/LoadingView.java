@@ -24,13 +24,16 @@ import com.sean.customview.R;
  * Description:
  */
 public class LoadingView extends LinearLayout {
-
+    // 使用到了创建的loading的图形
     private ShapeView mShapeView;
+    // loading图形下面的指示器
     private View mIndicatorView;
+    // 平移的路径距离，一开始是0
     private int mTranslationDistance = 0;
+    // 设置动画的时间
     private final long ANIMATOR_DURATION = 500;
 
-    //是否停止动画
+    // 是否停止动画
     private boolean mIsStopAnimator = false;
 
     public LoadingView(Context context) {
@@ -44,7 +47,8 @@ public class LoadingView extends LinearLayout {
     public LoadingView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mTranslationDistance = dip2px(80);
-        initLayout(context);
+        inflateAndInitView(context);
+        // 开始动画
         post(new Runnable() {
             @Override
             public void run() {
@@ -102,6 +106,7 @@ public class LoadingView extends LinearLayout {
             @Override
             public void onAnimationStart(Animator animation) {
                 super.onAnimationStart(animation);
+                // 在上移动时开启旋旋转动画
                 startRotation();
             }
         });
@@ -128,7 +133,8 @@ public class LoadingView extends LinearLayout {
         objectAnimator.start();
     }
 
-    private void initLayout(Context context) {
+    private void inflateAndInitView(Context context) {
+        // 把布局填充到线性布局里
         LayoutInflater.from(context).inflate(R.layout.ui_loading_view, this);
         mShapeView = findViewById(R.id.shape_view);
         mIndicatorView = findViewById(R.id.shadow_view);

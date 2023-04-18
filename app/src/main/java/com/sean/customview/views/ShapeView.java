@@ -18,6 +18,12 @@ import com.sean.customview.R;
  */
 @SuppressWarnings("SpellCheckingInspection")
 public class ShapeView extends View{
+    // 默认第一个是 圆形
+    private Shape mCurrentShape = Shape.Triangle;
+    // 用于绘制 loading的图形，圆形，三角形，正方形
+    private Paint mPaint;
+    // 正三角形的路径
+    private Path mPath;
 
     /**
      * 枚举的形势 分别表示 圆形,方形和三角形
@@ -31,12 +37,6 @@ public class ShapeView extends View{
         return mCurrentShape;
     }
 
-    //默认第一个是 圆形
-    private Shape mCurrentShape = Shape.Circle;
-
-    private Paint mPaint;
-    private Path mPath;
-
     public ShapeView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -47,7 +47,7 @@ public class ShapeView extends View{
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         //根据当前绘制规范得出的尺寸,选择小尺寸进行绘制
         int width = MeasureSpec.getSize(widthMeasureSpec);
-        int height = MeasureSpec.getSize(widthMeasureSpec);
+        int height = MeasureSpec.getSize(heightMeasureSpec);
         setMeasuredDimension(Math.min(width,height),Math.min(width,height));
     }
 
@@ -68,6 +68,10 @@ public class ShapeView extends View{
         }
     }
 
+    /**
+     * 这是画一个正三角形
+     * @param canvas
+     */
     private void drawTriangle(Canvas canvas) {
         mPaint.setColor(ContextCompat.getColor(getContext(),R.color.triangle));
         if (mPath == null) {
@@ -85,6 +89,10 @@ public class ShapeView extends View{
         canvas.drawRect(0,0,getWidth(),getHeight(),mPaint);
     }
 
+    /**
+     * 这里是画一个圆形
+     * @param canvas
+     */
     private void drawCircle(Canvas canvas) {
         int center = getWidth() / 2;
         mPaint.setColor(ContextCompat.getColor(getContext(), R.color.circle));
