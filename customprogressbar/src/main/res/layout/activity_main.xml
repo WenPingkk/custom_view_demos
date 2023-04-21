@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:background="@android:color/darker_gray"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.sean.customprogressbar.CustomHorizontalProgressBar
+        android:id="@+id/custom_progressbar"
+        android:layout_marginTop="100dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="match_parent"
+        app:normal_height="10dp"
+        app:scroll_indicator_height="2dp"
+        app:scroll_indicator_width="5dp"
+        android:layout_height="30dp" />
+</LinearLayout>

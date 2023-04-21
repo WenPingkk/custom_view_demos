@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomHorizontalProgressBar">
+        <attr name="normal_height" format="dimension" />
+        <attr name="scroll_indicator_height" format="dimension" />
+        <attr name="scroll_indicator_width" format="dimension" />
+    </declare-styleable>
+</resources>
